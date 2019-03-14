@@ -1,6 +1,8 @@
 {
   "name": "social-network",
   "version": "0.0.0",
+  "author": "Jesús Ángel Pérez-Roca Fernández",
+  "repository": "https://github.com/yisus82/hackabos-angular",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
