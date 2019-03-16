@@ -1,0 +1,10 @@
+<div>
+  <ul>
+    <li [class.selected]="form.id === index" *ngFor="let form of forms">
+      <a (click)="toggleForm(form.id)">{{ form.text }}</a>
+    </li>
+  </ul>
+  <div [class]="forms[index].class">
+    {{ forms[index].container }}
+  </div>
+</div>
