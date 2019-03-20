@@ -12,13 +12,13 @@ export class WelcomeFormsComponent {
       id: 0,
       text: 'Register',
       class: 'register-form',
-      container: 'sn-register'
+      container: 'register'
     },
     {
       id: 1,
       text: 'Login',
       class: 'login-form',
-      container: 'sn-login'
+      container: 'login'
     }
   ];
 

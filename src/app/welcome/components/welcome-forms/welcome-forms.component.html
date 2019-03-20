@@ -1,10 +1,14 @@
 <div>
   <ul>
     <li [class.selected]="form.id === index" *ngFor="let form of forms">
-      <a (click)="toggleForm(form.id)">{{ form.text }}</a>
+      <a snPreventDefault href="" (click)="toggleForm(form.id)">{{ form.text }}</a>
     </li>
   </ul>
   <div [class]="forms[index].class">
-    {{ forms[index].container }}
+    <sn-register *ngIf="index === 0"></sn-register>
+    <sn-login *ngIf="index === 1"></sn-login>
+    <!-- <ng-container *ngTemplateOutlet="forms[index].container"></ng-container>
+    <ng-template #login><sn-login></sn-login></ng-template>
+    <ng-template #register><sn-register></sn-register></ng-template> -->
   </div>
 </div>
