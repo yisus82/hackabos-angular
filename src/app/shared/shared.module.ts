@@ -7,6 +7,9 @@ import { SiteLayoutFooterComponent } from './components/site-layout-footer/site-
 import { RouterModule } from '@angular/router';
 import { ClickPreventDefaultDirective } from './directives/click-prevent-default.directive';
 import { IfDirective } from './directives/if.directive';
+import { ColorizerDirective } from './directives/colorizer.directive';
+import { FormComponent } from './components/forms/form.component';
+import { FormControlComponent } from './components/forms/form-control.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,10 @@ import { IfDirective } from './directives/if.directive';
     SiteLayoutHeaderComponent,
     SiteLayoutFooterComponent,
     ClickPreventDefaultDirective,
-    IfDirective
+    IfDirective,
+    ColorizerDirective,
+    FormComponent,
+    FormControlComponent
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -22,7 +28,10 @@ import { IfDirective } from './directives/if.directive';
     SiteLayoutHeaderComponent,
     SiteLayoutFooterComponent,
     ClickPreventDefaultDirective,
-    IfDirective
+    IfDirective,
+    ColorizerDirective,
+    FormComponent,
+    FormControlComponent
   ]
 })
 export class SharedModule {}

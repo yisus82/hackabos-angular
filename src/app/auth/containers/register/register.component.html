@@ -1,3 +1,21 @@
-<p>
-  register works!
-</p>
+<sn-form>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <sn-form-control [control]="registerForm.get('fullName')">
+      <input type="text" placeholder="Full name" formControlName="fullName" />
+    </sn-form-control>
+    <sn-form-control [control]="registerForm.get('email')">
+      <input type="text" placeholder="Email" formControlName="email" />
+    </sn-form-control>
+    <sn-form-control [control]="registerForm.get('password')">
+      <input type="password" placeholder="Password" formControlName="password" />
+    </sn-form-control>
+    <sn-form-control [control]="registerForm.get('confirmPassword')">
+      <input type="password" placeholder="Confirm password" formControlName="confirmPassword" />
+    </sn-form-control>
+    <div class="button-wrapper">
+      <button type="submit" (click)="register()">
+        Register
+      </button>
+    </div>
+  </form>
+</sn-form>
