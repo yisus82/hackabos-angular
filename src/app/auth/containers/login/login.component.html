@@ -1,7 +1,7 @@
 <sn-form>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <sn-form-control [control]="loginForm.get('email')">
-      <input type="text" placeholder="Email" formControlName="email" />
+      <input type="email" placeholder="Email" formControlName="email" />
     </sn-form-control>
     <sn-form-control [control]="loginForm.get('password')">
       <input type="password" placeholder="Password" formControlName="password" />

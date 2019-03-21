@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { MailValidator } from '../../validators/mail.validator';
+import { Store } from '@ngxs/store';
+import { Login } from '../../store/auth.actions';
 
 @Component({
   selector: 'sn-login',
@@ -17,13 +19,11 @@ export class LoginComponent {
     { updateOn: 'blur' }
   );
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private store: Store) {}
 
   login() {
     if (this.loginForm.valid) {
-      this.authService
-        .login(this.loginForm.value)
-        .subscribe(data => console.log(data), error => console.log(error));
+      this.store.dispatch(new Login(this.loginForm.value));
     }
   }
 }
