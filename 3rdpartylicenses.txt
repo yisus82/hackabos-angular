@@ -155,6 +155,18 @@ Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
 
+@ngxs/devtools-plugin
+MIT
+
+@ngxs/logger-plugin
+MIT
+
+@ngxs/router-plugin
+MIT
+
+@ngxs/store
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2019 Denis Pushkarev
