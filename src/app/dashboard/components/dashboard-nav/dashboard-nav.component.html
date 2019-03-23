@@ -1,3 +1,14 @@
-<p>
-  dashboard-nav works!
-</p>
+<ul class="dashboard-menu">
+  <li>
+    <a routerLink="/wall" routerLinkActive="active">Wall</a>
+  </li>
+  <li>
+    <a routerLink="/friends" routerLinkActive="active">Friends</a>
+  </li>
+  <li>
+    <a routerLink="/my-account" routerLinkActive="active">My Account</a>
+  </li>
+  <li>
+    <a (click)="logoutUser()">Logout</a>
+  </li>
+</ul>

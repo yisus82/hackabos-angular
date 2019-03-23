@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-gh": "ng build --prod --base-href='https://yisus82.github.io/hackabos-angular/'",
+    "build-gh": "ng build --prod --base-href=https://yisus82.github.io/hackabos-angular/",
     "gh-pages": "npx ngh --dir=dist/social-network",
     "deploy-gh": "npm run build-gh && npm run gh-pages"
   },

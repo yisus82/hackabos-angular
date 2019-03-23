@@ -10,6 +10,7 @@ import { DashboardNavComponent } from './components/dashboard-nav/dashboard-nav.
 import { FriendsComponent } from './containers/friends/friends.component';
 import { MyAccountComponent } from './containers/my-account/my-account.component';
 import { WallComponent } from './containers/wall/wall.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { WallComponent } from './containers/wall/wall.component';
     MyAccountComponent,
     WallComponent
   ],
-  imports: [CommonModule, DashboardRoutingModule]
+  imports: [CommonModule, DashboardRoutingModule, FontAwesomeModule]
 })
 export class DashboardModule {}
