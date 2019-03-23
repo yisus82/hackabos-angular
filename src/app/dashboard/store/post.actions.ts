@@ -12,6 +12,6 @@ export class GetPostsSuccess {
 }
 
 export class GetPostsFailed {
-  static readonly type = '[Dashboard] GetPostsFailes';
+  static readonly type = '[Dashboard] GetPostsFailed';
   constructor(public errors: Error[]) {}
 }

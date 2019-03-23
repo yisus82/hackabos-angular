@@ -11,7 +11,7 @@ import { PostResponse } from '../../dashboard.models';
   styleUrls: ['./wall.component.scss']
 })
 export class WallComponent implements OnInit {
-  @Select(PostState.getPost) post$: Observable<PostResponse[]>;
+  @Select(PostState.getPost) posts$: Observable<PostResponse[]>;
 
   constructor(private store: Store) {}
 

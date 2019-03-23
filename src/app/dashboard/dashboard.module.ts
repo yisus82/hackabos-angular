@@ -13,6 +13,12 @@ import { WallComponent } from './containers/wall/wall.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsModule } from '@ngxs/store';
 import { PostState } from './store/post.state';
+import { PostComponent } from './components/post/post.component';
+import { PublisherComponent } from './components/publisher/publisher.component';
+import { PostContentComponent } from './components/post/post-content/post-content.component';
+import { LikeComponent } from './components/post/like/like.component';
+import { CommentCounterComponent } from './components/post/comment-counter/comment-counter.component';
+import { CommentComponent } from './components/post/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,13 @@ import { PostState } from './store/post.state';
     DashboardNavComponent,
     FriendsComponent,
     MyAccountComponent,
-    WallComponent
+    WallComponent,
+    PublisherComponent,
+    PostComponent,
+    PostContentComponent,
+    LikeComponent,
+    CommentCounterComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
