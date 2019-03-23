@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'sn-dashboard-nav',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard-nav.component.scss']
 })
 export class DashboardNavComponent {
+  logout = faSignOutAlt;
+
   logoutUser() {
     console.log('Logout');
   }
