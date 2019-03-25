@@ -1,6 +1,9 @@
-<div style="margin: 2rem 0;">
-  <sn-post-content></sn-post-content>
-  <sn-like></sn-like>
-  <sn-comment-counter></sn-comment-counter>
-  <sn-comment></sn-comment>
-</div>
+<article>
+  <sn-post-content [post]="post"></sn-post-content>
+  <sn-like [post]="post"></sn-like>
+  <section class="comments">
+    <sn-comment-counter [post]="post"></sn-comment-counter>
+    <sn-publisher></sn-publisher>
+    <sn-comment *ngFor="let comment of post.comments" [comment]="comment"></sn-comment>
+  </section>
+</article>

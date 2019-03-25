@@ -19,6 +19,7 @@ import { PostContentComponent } from './components/post/post-content/post-conten
 import { LikeComponent } from './components/post/like/like.component';
 import { CommentCounterComponent } from './components/post/comment-counter/comment-counter.component';
 import { CommentComponent } from './components/post/comment/comment.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CommentComponent } from './components/post/comment/comment.component';
     PostContentComponent,
     LikeComponent,
     CommentCounterComponent,
-    CommentComponent
+    CommentComponent,
+    TimeAgoPipe
   ],
   imports: [
     CommonModule,

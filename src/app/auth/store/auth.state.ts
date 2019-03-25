@@ -7,7 +7,10 @@ import {
   LoginFailed,
   RegisterFailed,
   Register,
-  RegisterSuccess
+  RegisterSuccess,
+  GetUserProfileSuccess,
+  GetUserProfileFailed,
+  GetUserProfile
 } from './auth.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { tap, catchError } from 'rxjs/operators';
@@ -46,6 +49,22 @@ export class AuthState {
   @Action(RegisterSuccess)
   registerSuccess(ctx: StateContext<Auth>) {}
 
-  @Action([LoginFailed, RegisterFailed])
+  @Action(GetUserProfile)
+  getUserProfile({ dispatch }: StateContext<Auth>) {
+    return this.authService.getUserProfile().pipe(
+      tap(profileResponse => dispatch(new GetUserProfileSuccess(profileResponse))),
+      catchError(error => dispatch(new GetUserProfileFailed(error.error)))
+    );
+  }
+
+  @Action(GetUserProfileSuccess)
+  getUserProfileSuccess(
+    { patchState, dispatch }: StateContext<Auth>,
+    { profile }: GetUserProfileSuccess
+  ) {
+    patchState({ ...profile });
+  }
+
+  @Action([LoginFailed, RegisterFailed, GetUserProfileFailed])
   error(ctx: StateContext<Auth>, { errors }: any) {}
 }
