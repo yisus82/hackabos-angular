@@ -1,13 +1,17 @@
 <sn-form>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <sn-form-control [control]="loginForm.get('email')">
-      <input type="email" placeholder="Email" formControlName="email" />
+      <input type="text" placeholder="Email" formControlName="email" />
     </sn-form-control>
     <sn-form-control [control]="loginForm.get('password')">
-      <input type="password" placeholder="Password" formControlName="password" />
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+      />
     </sn-form-control>
     <div class="button-wrapper">
-      <button type="submit" (click)="login()">
+      <button type="submit">
         Login
       </button>
     </div>

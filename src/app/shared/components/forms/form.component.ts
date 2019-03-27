@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'sn-form',
-  templateUrl: './form.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent {}

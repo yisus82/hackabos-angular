@@ -1,12 +1,29 @@
 export interface Auth {
   uuid: string;
   email: string;
-  accessToken: string;
-  refreshToken: string;
   expiresIn: number;
-  friends: Friend[];
-  avatarUrl?: string;
+  refreshToken: string;
+  accessToken: string;
+  fullName: string;
+  avatarUrl: string;
   preferences: Preferences;
+  friends: Friend[];
+}
+
+export interface Friend {
+  uuid: string;
+  confirmed: boolean;
+  createdAt: number;
+  confirmedAt: number;
+  rejectedAt: number;
+}
+
+export interface Preferences {
+  isPublicProfile: boolean;
+  linkedIn?: string;
+  twitter?: string;
+  github?: string;
+  description?: string;
 }
 
 export interface LoginRequest {
@@ -26,20 +43,4 @@ export interface RegisterRequest {
   fullName: string;
   email: string;
   password: string;
-}
-
-export interface Friend {
-  uuid: string;
-  confirmed: boolean;
-  createdAt: number;
-  confirmedAt?: number;
-  rejectedAt?: number;
-}
-
-export interface Preferences {
-  isPublicProfile: boolean;
-  linkedIn?: string;
-  twitter?: string;
-  github?: string;
-  description?: string;
 }

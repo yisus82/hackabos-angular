@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PostResponse } from 'src/app/dashboard/dashboard.models';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'sn-like',
@@ -7,5 +7,6 @@ import { PostResponse } from 'src/app/dashboard/dashboard.models';
   styleUrls: ['./like.component.scss']
 })
 export class LikeComponent {
-  @Input() post: PostResponse;
+  @Input() likeCount;
+  likeIcon = faThumbsUp;
 }

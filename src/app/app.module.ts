@@ -8,8 +8,9 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeModule } from './welcome/welcome.module';
-import { AboutModule } from './about/about.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { AboutModule } from './about/about.module';
+
 import { environment } from '../environments/environment';
 
 @NgModule({

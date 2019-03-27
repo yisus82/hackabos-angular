@@ -1,6 +1,10 @@
-<sn-publisher></sn-publisher>
+<sn-publisher
+  [user]="currentUser$ | async"
+  (publish)="publishPost($event)"
+></sn-publisher>
+
 <ng-container *ngIf="(currentUser$ | async) as currentUser">
-  <ng-container class="post-list" *ngFor="let post of (posts$ | async)">
-    <sn-post [post]="post" [user]="currentUser"></sn-post>
+  <ng-container *ngFor="let item of (posts$ | async)">
+    <sn-post [post]="item" [user]="currentUser"></sn-post>
   </ng-container>
 </ng-container>

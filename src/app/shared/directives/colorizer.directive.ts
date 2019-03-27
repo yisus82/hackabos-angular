@@ -4,7 +4,16 @@ import { Directive, HostListener, HostBinding } from '@angular/core';
   selector: '[snColorizer]'
 })
 export class ColorizerDirective {
-  colors = ['red', 'blue', 'green', 'black', 'yellow', 'brown', 'purple', 'cyan'];
+  colors = [
+    'red',
+    'blue',
+    'green',
+    'black',
+    'yellow',
+    'brown',
+    'purple',
+    'cyan'
+  ];
 
   @HostBinding('style.color') color: string;
   @HostBinding('style.border') border: string;

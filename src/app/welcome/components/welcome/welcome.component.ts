@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { faSearch, faUsers, faComments } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import {
+  faSearch,
+  faUsers,
+  faComments
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'sn-welcome',

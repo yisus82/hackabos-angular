@@ -10,7 +10,7 @@
       "prefix": "sn",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "styleext": "scss"
         }
       },
       "architect": {
@@ -23,12 +23,14 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/scss/styles.scss", "./node_modules/simple-css-reset/reset.css"],
+            "styles": [
+              "src/scss/styles.scss",
+              "./node_modules/simple-css-reset/reset.css"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
             },
-            "scripts": [],
-            "es5BrowserSupport": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -81,10 +83,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
-            "styles": ["src/scss/styles.scss", "./node_modules/simple-css-reset/reset.css"],
-            "stylePreprocessorOptions": {
-              "includePaths": ["src/scss"]
-            },
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }

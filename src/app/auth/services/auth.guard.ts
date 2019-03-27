@@ -7,7 +7,10 @@ import { Store } from '@ngxs/store';
 export class AuthGuard implements CanActivate {
   constructor(private store: Store, private router: Router) {}
 
-  canActivate(next: ActivatedRouteSnapshot, stateSnapshot: RouterStateSnapshot): boolean {
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): boolean {
     const currentUser = this.store.selectSnapshot(state => state.auth);
     if (currentUser && currentUser.accessToken) {
       return true;

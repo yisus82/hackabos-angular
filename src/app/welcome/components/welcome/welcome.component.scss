@@ -20,16 +20,17 @@
   }
 
   @include respond-above(md) {
+    padding: 2%;
+    flex-direction: row;
+
     sn-welcome-hero {
       flex: 1;
       display: block;
     }
+
     sn-welcome-forms {
       flex-direction: row;
       max-width: 500px;
     }
-
-    padding: 2%;
-    flex-direction: row;
   }
 }

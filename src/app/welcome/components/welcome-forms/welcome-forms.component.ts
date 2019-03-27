@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'sn-welcome-forms',
@@ -6,23 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-forms.component.scss']
 })
 export class WelcomeFormsComponent {
-  index = 0;
-  forms = [
-    {
-      id: 0,
-      text: 'Register',
-      class: 'register-form',
-      container: 'register'
-    },
-    {
-      id: 1,
-      text: 'Login',
-      class: 'login-form',
-      container: 'login'
-    }
-  ];
+  isRegisterFormVisible = true;
 
-  toggleForm(index: number) {
-    this.index = index;
+  toggleForm(isRegisterClick: boolean) {
+    if (
+      (isRegisterClick && this.isRegisterFormVisible) ||
+      (!isRegisterClick && !this.isRegisterFormVisible)
+    ) {
+      return;
+    }
+
+    this.isRegisterFormVisible = !this.isRegisterFormVisible;
   }
 }
+

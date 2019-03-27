@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './containers/login/login.component';
 import { RegisterComponent } from './containers/register/register.component';
@@ -18,12 +17,14 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     CommonModule,
     AuthRoutingModule,
     FontAwesomeModule,
+    SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SharedModule,
     NgxsModule.forFeature([AuthState])
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   exports: [LoginComponent, RegisterComponent]
 })
 export class AuthModule {}

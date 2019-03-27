@@ -1,23 +1,28 @@
-import { State, Store, Action, StateContext, Selector } from '@ngxs/store';
-import { PostCollection } from '../dashboard.models';
+import { State, Store, Action, StateContext } from '@ngxs/store';
 import { PostService } from '../services/post.service';
-import { GetPosts, GetPostsSuccess, GetPostsFailed } from './post.actions';
+import {
+  GetPosts,
+  GetPostsSuccess,
+  GetPostsFailed,
+  AddPostFailed,
+  AddCommentFailed,
+  AddPost,
+  AddPostSuccess
+} from './post.action';
 import { tap, catchError } from 'rxjs/operators';
+import { Post } from '../dashboard.models';
+import { flushModuleScopingQueueAsMuchAsPossible } from '@angular/core/src/render3/jit/module';
+import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 
-@State<PostCollection>({
+@State<Post[]>({
   name: 'posts',
-  defaults: {}
+  defaults: []
 })
 export class PostState {
-  @Selector()
-  static getPost(state: PostCollection) {
-    return Object.values(state);
-  }
-
-  constructor(private store: Store, private postService: PostService) {}
+  constructor(private postService: PostService, private store: Store) {}
 
   @Action(GetPosts)
-  getPosts({ dispatch }: StateContext<PostCollection>) {
+  getPosts({ dispatch }: StateContext<Post[]>) {
     return this.postService.getWall().pipe(
       tap(posts => dispatch(new GetPostsSuccess(posts))),
       catchError(error => dispatch(new GetPostsFailed(error.error)))
@@ -25,19 +30,45 @@ export class PostState {
   }
 
   @Action(GetPostsSuccess)
-  getPostsSuccess({ setState }: StateContext<PostCollection>, { posts }: GetPostsSuccess) {
+  getPostsSuccess(
+    { setState }: StateContext<Post[]>,
+    { posts }: GetPostsSuccess
+  ) {
     setState(
-      posts
-        .sort((post1, post2) => post2.createdAt - post1.createdAt)
-        .reduce((draft, post) => {
-          draft[post.id] = post;
-          return draft;
-        }, {})
+      posts.sort((p1, p2) => {
+        return p2.createdAt - p1.createdAt;
+      })
     );
   }
 
-  @Action(GetPostsFailed)
-  errors(ctx: StateContext<PostCollection>, { errors }: GetPostsFailed) {
+  @Action(AddPost)
+  addMiguel({ dispatch }: StateContext<Post[]>, { postRequest }: AddPost) {
+    const currentUser = this.store.selectSnapshot(state => state.auth);
+
+    return this.postService.addPost(postRequest.content).pipe(
+      tap(post =>
+        dispatch(
+          new AddPostSuccess({
+            ...post,
+            author: currentUser,
+            owner: currentUser
+          })
+        )
+      ),
+      catchError(error => dispatch(new AddPostFailed(error.error)))
+    );
+  }
+
+  @Action(AddPostSuccess)
+  addMiguelSuccess(
+    { setState, getState }: StateContext<Post[]>,
+    { post }: AddPostSuccess
+  ) {
+    setState([post, ...getState()]);
+  }
+
+  @Action([GetPostsFailed, AddPostFailed, AddCommentFailed])
+  errors(ctx: StateContext<Post[]>, { errors }: GetPostsFailed) {
     console.log(errors);
   }
 }

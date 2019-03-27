@@ -20,7 +20,10 @@ export class AuthService {
         map(user => {
           if (user && user.accessToken) {
             const { accessToken, refreshToken } = user;
-            localStorage.setItem('auth', JSON.stringify({ accessToken, refreshToken }));
+            localStorage.setItem(
+              'auth',
+              JSON.stringify({ accessToken, refreshToken })
+            );
           }
           return user;
         })

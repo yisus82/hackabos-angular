@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { faHackerrank } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
@@ -8,5 +8,5 @@ import { faHackerrank } from '@fortawesome/free-brands-svg-icons';
 })
 export class SiteLayoutHeaderComponent {
   logo = faHackerrank;
-  title = 'hack a bos';
+  title = 'The Social Network';
 }

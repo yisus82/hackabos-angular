@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { MatchPasswordValidator } from '../../validators/match-password.validator';
+import { MatchPasswordValidator } from '../../validators/match-pasword.validator';
 import { MailValidator } from '../../validators/mail.validator';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { Register, RegisterSuccess } from '../../store/auth.actions';
@@ -25,10 +25,16 @@ export class RegisterComponent implements OnInit {
     }
   );
 
-  constructor(private fb: FormBuilder, private store: Store, private actions$: Actions) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private actions$: Actions
+  ) {}
 
   ngOnInit() {
-    this.actions$.pipe(ofAction(RegisterSuccess)).subscribe(() => this.registerForm.reset());
+    this.actions$
+      .pipe(ofAction(RegisterSuccess))
+      .subscribe(() => this.registerForm.reset());
   }
 
   register() {
@@ -40,6 +46,8 @@ export class RegisterComponent implements OnInit {
   }
 
   markFormGroupAsTouched(formGroup: FormGroup) {
-    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
+    Object.values(formGroup.controls).forEach(control =>
+      control.markAsTouched()
+    );
   }
 }

@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'social-network';
+  title = 'Hola soy Yago';
+
+  constructor() {}
+
+  onClick(event) {
+    console.log(event);
+  }
 }

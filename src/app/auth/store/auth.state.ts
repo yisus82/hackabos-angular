@@ -8,8 +8,8 @@ import {
   RegisterFailed,
   Register,
   RegisterSuccess,
-  GetUserProfileSuccess,
   GetUserProfileFailed,
+  GetUserProfileSuccess,
   GetUserProfile
 } from './auth.actions';
 import { Navigate } from '@ngxs/router-plugin';
@@ -33,8 +33,12 @@ export class AuthState {
   }
 
   @Action(LoginSuccess)
-  loginSuccess({ patchState, dispatch }: StateContext<Auth>, { loginResponse }: LoginSuccess) {
+  loginSuccess(
+    { patchState, dispatch }: StateContext<Auth>,
+    { loginResponse }: LoginSuccess
+  ) {
     patchState({ ...loginResponse });
+
     dispatch(new Navigate(['/wall']));
   }
 
@@ -46,24 +50,26 @@ export class AuthState {
     );
   }
 
-  @Action(RegisterSuccess)
-  registerSuccess(ctx: StateContext<Auth>) {}
-
   @Action(GetUserProfile)
   getUserProfile({ dispatch }: StateContext<Auth>) {
     return this.authService.getUserProfile().pipe(
-      tap(profileResponse => dispatch(new GetUserProfileSuccess(profileResponse))),
+      tap(profileResponse =>
+        dispatch(new GetUserProfileSuccess(profileResponse))
+      ),
       catchError(error => dispatch(new GetUserProfileFailed(error.error)))
     );
   }
 
   @Action(GetUserProfileSuccess)
   getUserProfileSuccess(
-    { patchState, dispatch }: StateContext<Auth>,
+    { patchState }: StateContext<Auth>,
     { profile }: GetUserProfileSuccess
   ) {
     patchState({ ...profile });
   }
+
+  @Action(RegisterSuccess)
+  registerSuccess(ctx: StateContext<Auth>) {}
 
   @Action([LoginFailed, RegisterFailed, GetUserProfileFailed])
   error(ctx: StateContext<Auth>, { errors }: any) {}
