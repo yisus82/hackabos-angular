@@ -6,13 +6,11 @@
   <sn-like [likeCount]="post.likes.length"></sn-like>
 
   <section class="comments">
-    <sn-post-comment-counter
-      [count]="post.comments.length"
-    ></sn-post-comment-counter>
+    <sn-post-comment-counter [count]="post.comments.length"></sn-post-comment-counter>
 
     <hr />
 
-    <sn-publisher [user]="user"></sn-publisher>
+    <sn-publisher [user]="user" (publish)="addComment($event)"></sn-publisher>
 
     <sn-post-comment
       *ngFor="let comment of post.comments"

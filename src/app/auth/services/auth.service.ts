@@ -20,10 +20,7 @@ export class AuthService {
         map(user => {
           if (user && user.accessToken) {
             const { accessToken, refreshToken } = user;
-            localStorage.setItem(
-              'auth',
-              JSON.stringify({ accessToken, refreshToken })
-            );
+            localStorage.setItem('auth', JSON.stringify({ accessToken, refreshToken }));
           }
           return user;
         })
@@ -40,5 +37,9 @@ export class AuthService {
 
   getUserProfile() {
     return this.http.get<Auth>(`${environment.apiBaseUrl}/user`);
+  }
+
+  logout() {
+    localStorage.removeItem('auth');
   }
 }

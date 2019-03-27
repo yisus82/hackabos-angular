@@ -1,4 +1,4 @@
-import { Post } from '../dashboard.models';
+import { Post, Comment } from '../dashboard.models';
 import { Error } from 'src/app/error/error.models';
 import { PostRequest } from '../../dashboard/dashboard.models';
 

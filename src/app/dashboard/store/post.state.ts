@@ -7,7 +7,9 @@ import {
   AddPostFailed,
   AddCommentFailed,
   AddPost,
-  AddPostSuccess
+  AddPostSuccess,
+  AddComment,
+  AddCommentSuccess
 } from './post.action';
 import { tap, catchError } from 'rxjs/operators';
 import { Post } from '../dashboard.models';
@@ -30,10 +32,7 @@ export class PostState {
   }
 
   @Action(GetPostsSuccess)
-  getPostsSuccess(
-    { setState }: StateContext<Post[]>,
-    { posts }: GetPostsSuccess
-  ) {
+  getPostsSuccess({ setState }: StateContext<Post[]>, { posts }: GetPostsSuccess) {
     setState(
       posts.sort((p1, p2) => {
         return p2.createdAt - p1.createdAt;
@@ -42,7 +41,7 @@ export class PostState {
   }
 
   @Action(AddPost)
-  addMiguel({ dispatch }: StateContext<Post[]>, { postRequest }: AddPost) {
+  addPost({ dispatch }: StateContext<Post[]>, { postRequest }: AddPost) {
     const currentUser = this.store.selectSnapshot(state => state.auth);
 
     return this.postService.addPost(postRequest.content).pipe(
@@ -60,15 +59,62 @@ export class PostState {
   }
 
   @Action(AddPostSuccess)
-  addMiguelSuccess(
-    { setState, getState }: StateContext<Post[]>,
-    { post }: AddPostSuccess
-  ) {
+  addPostSuccess({ setState, getState }: StateContext<Post[]>, { post }: AddPostSuccess) {
     setState([post, ...getState()]);
+  }
+
+  @Action(AddComment)
+  addComment({ dispatch }: StateContext<Post[]>, { postId, message }: AddComment) {
+    const currentUser = this.store.selectSnapshot(state => state.auth);
+
+    return this.postService.addComment(postId, message).pipe(
+      tap(() =>
+        dispatch(
+          new AddCommentSuccess(
+            {
+              author: currentUser,
+              message,
+              createdAt: new Date().getTime(),
+              id: this.uuidv4()
+            },
+            postId
+          )
+        )
+      ),
+      catchError(error => dispatch(new AddPostFailed(error.error)))
+    );
+  }
+
+  @Action(AddCommentSuccess)
+  addCommentSucess(
+    { setState, getState }: StateContext<Post[]>,
+    { comment, postId }: AddCommentSuccess
+  ) {
+    setState(
+      getState().map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            comments: [comment, ...post.comments]
+          };
+        }
+        return post;
+      })
+    );
   }
 
   @Action([GetPostsFailed, AddPostFailed, AddCommentFailed])
   errors(ctx: StateContext<Post[]>, { errors }: GetPostsFailed) {
     console.log(errors);
+  }
+
+  private uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      // tslint:disable-next-line: no-bitwise
+      const r = (Math.random() * 16) | 0;
+      // tslint:disable-next-line: no-bitwise
+      const v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
   }
 }

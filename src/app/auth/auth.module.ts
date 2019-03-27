@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './store/auth.state';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { ErrorInterceptor } from './services/error.interceptor';
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
@@ -23,7 +24,8 @@ import { JwtInterceptor } from './services/jwt.interceptor';
     NgxsModule.forFeature([AuthState])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   exports: [LoginComponent, RegisterComponent]
 })
