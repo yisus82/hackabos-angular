@@ -12,9 +12,11 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AboutModule } from './about/about.module';
 
 import { environment } from '../environments/environment';
+import { ErrorModule } from './error/error.module';
+import { ErrorComponent } from './error/components/error/error.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ErrorComponent],
   imports: [
     BrowserModule,
     NgxsReduxDevtoolsPluginModule.forRoot({
@@ -28,6 +30,7 @@ import { environment } from '../environments/environment';
     WelcomeModule,
     DashboardModule,
     AboutModule,
+    ErrorModule,
     AppRoutingModule
   ],
   providers: [],

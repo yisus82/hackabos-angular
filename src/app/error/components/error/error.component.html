@@ -1,0 +1,6 @@
+<div class="errors">
+  <p *ngFor="let error of (errors$ | async)">
+    {{ getMessageError(error) }}
+  </p>
+  <a href="#" (click)="resetErrors()"></a>
+</div>

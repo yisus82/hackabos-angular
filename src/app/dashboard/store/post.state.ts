@@ -15,6 +15,7 @@ import { tap, catchError } from 'rxjs/operators';
 import { Post } from '../dashboard.models';
 import { flushModuleScopingQueueAsMuchAsPossible } from '@angular/core/src/render3/jit/module';
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
+import { SetErrors } from 'src/app/error/store/error.actions';
 
 @State<Post[]>({
   name: 'posts',
@@ -104,8 +105,8 @@ export class PostState {
   }
 
   @Action([GetPostsFailed, AddPostFailed, AddCommentFailed])
-  errors(ctx: StateContext<Post[]>, { errors }: GetPostsFailed) {
-    console.log(errors);
+  error({ dispatch }: StateContext<Post[]>, { errors }: any) {
+    dispatch(new SetErrors(errors));
   }
 
   private uuidv4() {

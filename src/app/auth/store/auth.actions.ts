@@ -1,9 +1,4 @@
-import {
-  LoginRequest,
-  LoginResponse,
-  RegisterRequest,
-  Auth
-} from '../auth.models';
+import { LoginRequest, LoginResponse, RegisterRequest, Auth } from '../auth.models';
 import { Error } from 'src/app/error/error.models';
 
 export class Login {
@@ -19,6 +14,10 @@ export class LoginSuccess {
 export class LoginFailed {
   static type = '[Auth] LoginFailed';
   constructor(public errors: Error[]) {}
+}
+
+export class Logout {
+  static type = '[Auth] Logout';
 }
 
 export class Register {
