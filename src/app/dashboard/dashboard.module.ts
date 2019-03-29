@@ -24,6 +24,8 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ErrorModule } from '../error/error.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { FriendRequestsComponent } from './components/friend-requests/friend-requests.component';
+import { FriendsState } from './store/friends.state';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,8 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     PostBodyComponent,
     LikeComponent,
     PostCommentComponent,
-    PostCommentCounterComponent
+    PostCommentCounterComponent,
+    FriendRequestsComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +53,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     FontAwesomeModule,
     FormsModule,
     ErrorModule,
-    NgxsModule.forFeature([PostState]),
+    NgxsModule.forFeature([PostState, FriendsState]),
     SharedModule
   ]
 })

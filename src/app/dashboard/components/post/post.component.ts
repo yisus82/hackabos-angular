@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AddComment, Like } from '../../store/post.action';
+import { AddComment, Like } from '../../store/post.actions';
 
 @Component({
   selector: 'sn-post',

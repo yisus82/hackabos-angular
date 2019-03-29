@@ -13,12 +13,13 @@ import {
   LikeSuccess,
   LikeFailed,
   Like
-} from './post.action';
+} from './post.actions';
 import { tap, catchError } from 'rxjs/operators';
 import { Post } from '../dashboard.models';
 import { flushModuleScopingQueueAsMuchAsPossible } from '@angular/core/src/render3/jit/module';
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 import { SetErrors } from 'src/app/error/store/error.actions';
+import { Logout } from 'src/app/auth/store/auth.actions';
 
 @State<Post[]>({
   name: 'posts',
@@ -143,6 +144,11 @@ export class PostState {
         return post;
       })
     );
+  }
+
+  @Action(Logout)
+  logout({ setState }: StateContext<Post[]>) {
+    setState(null);
   }
 
   @Action([GetPostsFailed, AddPostFailed, AddCommentFailed, LikeFailed])

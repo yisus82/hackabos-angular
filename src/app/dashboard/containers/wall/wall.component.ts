@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, Select } from '@ngxs/store';
-import { GetPosts, AddPost } from '../../store/post.action';
+import { GetPosts, AddPost } from '../../store/post.actions';
 import { PostState } from '../../store/post.state';
 import { Post } from '../../dashboard.models';
 import { Observable } from 'rxjs';

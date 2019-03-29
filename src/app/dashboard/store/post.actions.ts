@@ -1,6 +1,6 @@
 import { Post, Comment } from '../dashboard.models';
 import { Error } from 'src/app/error/error.models';
-import { PostRequest } from '../../dashboard/dashboard.models';
+import { PostRequest } from '../dashboard.models';
 
 export class GetPosts {
   static readonly type = '[Dashboard] GetPosts';
