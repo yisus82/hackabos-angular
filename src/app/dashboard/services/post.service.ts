@@ -21,11 +21,16 @@ export class PostService {
   }
 
   addComment(postId: string, message: string) {
-    return this.http.post<Comment>(
-      `${environment.apiBaseUrl}/post/${postId}/comment`,
-      {
-        message
-      }
-    );
+    return this.http.post<Comment>(`${environment.apiBaseUrl}/post/${postId}/comment`, {
+      message
+    });
+  }
+
+  like(postId: string) {
+    return this.http.post(`${environment.apiBaseUrl}/post/${postId}/like`, {});
+  }
+
+  dislike(postId: string) {
+    return this.http.delete(`${environment.apiBaseUrl}/post/${postId}/like`, {});
   }
 }

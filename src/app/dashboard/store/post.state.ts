@@ -9,7 +9,10 @@ import {
   AddPost,
   AddPostSuccess,
   AddComment,
-  AddCommentSuccess
+  AddCommentSuccess,
+  LikeSuccess,
+  LikeFailed,
+  Like
 } from './post.action';
 import { tap, catchError } from 'rxjs/operators';
 import { Post } from '../dashboard.models';
@@ -104,7 +107,45 @@ export class PostState {
     );
   }
 
-  @Action([GetPostsFailed, AddPostFailed, AddCommentFailed])
+  @Action(Like, { cancelUncompleted: true })
+  like({ dispatch, getState }: StateContext<Post[]>, { postId }: Like) {
+    const post = getState().find(p => p.id === postId);
+    const currentUser = this.store.selectSnapshot(state => state.auth);
+
+    if (post) {
+      if (post.likes.indexOf(currentUser.uuid) === -1) {
+        return this.postService.like(postId).pipe(
+          tap(() => dispatch(new LikeSuccess(postId, true, currentUser.uuid))),
+          catchError(error => dispatch(new LikeFailed(error.error)))
+        );
+      } else {
+        return this.postService.dislike(postId).pipe(
+          tap(() => dispatch(new LikeSuccess(postId, false, currentUser.uuid))),
+          catchError(error => dispatch(new LikeFailed(error.error)))
+        );
+      }
+    }
+  }
+
+  @Action(LikeSuccess)
+  likeSuccess(
+    { getState, setState }: StateContext<Post[]>,
+    { postId, isLike, userUuid }: LikeSuccess
+  ) {
+    setState(
+      getState().map(post => {
+        if (post.id === postId) {
+          return {
+            ...post,
+            likes: isLike ? [...post.likes, userUuid] : post.likes.filter(uuid => uuid !== userUuid)
+          };
+        }
+        return post;
+      })
+    );
+  }
+
+  @Action([GetPostsFailed, AddPostFailed, AddCommentFailed, LikeFailed])
   error({ dispatch }: StateContext<Post[]>, { errors }: any) {
     dispatch(new SetErrors(errors));
   }

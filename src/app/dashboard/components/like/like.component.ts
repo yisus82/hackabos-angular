@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -7,6 +7,12 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./like.component.scss']
 })
 export class LikeComponent {
-  @Input() likeCount;
+  @Input() likeCount: number;
+  @Output() like = new EventEmitter();
+
   likeIcon = faThumbsUp;
+
+  likeClick() {
+    this.like.emit();
+  }
 }

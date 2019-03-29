@@ -22,6 +22,7 @@ export class TextareaDirective {
   constructor(private element: ElementRef) {}
 
   autoExpand() {
+    this.element.nativeElement.style.height = 'auto';
     this.element.nativeElement.style.height = this.element.nativeElement.scrollHeight + 'px';
   }
 }
