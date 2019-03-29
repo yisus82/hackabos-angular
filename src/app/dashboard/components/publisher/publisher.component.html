@@ -2,8 +2,10 @@
   <sn-avatar [user]="user"></sn-avatar>
   <div class="publisher-text">
     <textarea
+      snTextarea
       [(ngModel)]="content"
       (keydown)="exploreKeyPressed($event)"
+      placeholder="What are you thinking?"
     ></textarea>
   </div>
   <button (click)="publishStatus()">

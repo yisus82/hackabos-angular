@@ -12,6 +12,8 @@ import { FormComponent } from './components/forms/form.component';
 import { FormControlComponent } from './components/forms/form-control.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { TextareaDirective } from './directives/text-area.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     FormComponent,
     FormControlComponent,
     PageNotFoundComponent,
-    AvatarComponent
+    AvatarComponent,
+    CapitalizePipe,
+    TextareaDirective
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -36,7 +40,9 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     ColorizerDirective,
     FormComponent,
     FormControlComponent,
-    AvatarComponent
+    AvatarComponent,
+    CapitalizePipe,
+    TextareaDirective
   ]
 })
 export class SharedModule {}

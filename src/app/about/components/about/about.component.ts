@@ -7,17 +7,16 @@ import { Component } from '@angular/core';
 })
 export class AboutComponent {
   title = 'Hey there!! 👋';
-  subtitle = 'My name is Yago';
-  description = `I'm a frontend developer and love to create beautiful websites !!. You can check more about me in the followings sites:`;
+  subtitle = 'My name is Jesús';
+  description = `I'm a full-stack developer and I love coding!!!. You can learn more about me in the followings sites:`;
   links = [
-    { url: 'http://linkedin.com/yagopv', name: 'LinkedIn' },
-    { url: 'http://github.com/yagopv', name: 'Github' },
-    { url: 'http://portfolio.yagoperez.com', name: 'Portfolio' },
-    { url: 'http://twitter.com/yperezva', name: 'Twitter' }
+    { url: 'https://www.linkedin.com/in/jesusperezrocafernandez/', name: 'LinkedIn' },
+    { url: 'https://github.com/yisus82/', name: 'Github' },
+    { url: 'https://yisus82.github.io/', name: 'Portfolio' }
   ];
 
   contact = {
-    description: 'If you want to contact with me you can send me an email to:',
-    mail: 'yagoperez@outlook.com'
+    description: 'If you want to contact me you can send me an email to:',
+    mail: 'jprf.liceo@gmail.com'
   };
 }

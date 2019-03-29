@@ -8,5 +8,5 @@ import { faHackerrank } from '@fortawesome/free-brands-svg-icons';
 })
 export class SiteLayoutHeaderComponent {
   logo = faHackerrank;
-  title = 'The Social Network';
+  title = 'hack a bos';
 }

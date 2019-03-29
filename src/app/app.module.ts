@@ -16,7 +16,7 @@ import { ErrorModule } from './error/error.module';
 import { ErrorComponent } from './error/components/error/error.component';
 
 @NgModule({
-  declarations: [AppComponent, ErrorComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     NgxsReduxDevtoolsPluginModule.forRoot({

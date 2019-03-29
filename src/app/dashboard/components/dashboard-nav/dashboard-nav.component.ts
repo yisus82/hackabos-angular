@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Logout } from 'src/app/auth/store/auth.actions';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'sn-dashboard-nav',
@@ -8,9 +9,10 @@ import { Logout } from 'src/app/auth/store/auth.actions';
   styleUrls: ['./dashboard-nav.component.scss']
 })
 export class DashboardNavComponent {
+  logout = faSignOutAlt;
+
   constructor(private store: Store) {}
   logoutUser() {
-    console.log('Logout');
     this.store.dispatch(new Logout());
   }
 }

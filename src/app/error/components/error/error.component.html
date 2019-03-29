@@ -1,6 +1,8 @@
-<div class="errors">
+<div class="errors" *ngIf="(errors$ | async)?.length">
   <p *ngFor="let error of (errors$ | async)">
-    {{ getMessageError(error) }}
+    {{ getErrorMessage(error) | capitalize }}
   </p>
-  <a href="#" (click)="resetErrors()"></a>
+  <a (click)="resetErrors()">
+    <fa-icon [icon]="closeIcon"></fa-icon>
+  </a>
 </div>

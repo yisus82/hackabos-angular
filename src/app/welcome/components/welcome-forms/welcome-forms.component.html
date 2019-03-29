@@ -1,17 +1,11 @@
 <div>
   <ul>
-    <li [class.selected]="isRegisterFormVisible">
-      <a snPreventDefault href="" (click)="toggleForm(true)">Register</a>
-    </li>
-    <li [class.selected]="!isRegisterFormVisible">
-      <a snPreventDefault href="" (click)="toggleForm(false)">Login</a>
+    <li [class.selected]="form.id === index" *ngFor="let form of forms">
+      <a snPreventDefault href="" (click)="toggleForm(form.id)">{{ form.text }}</a>
     </li>
   </ul>
-
-  <div class="register-form" *ngIf="isRegisterFormVisible">
-    <sn-register></sn-register>
-  </div>
-  <div class="login-form" *ngIf="!isRegisterFormVisible">
-    <sn-login></sn-login>
+  <div [class]="forms[index].class">
+    <sn-register *ngIf="index === 0"></sn-register>
+    <sn-login *ngIf="index === 1"></sn-login>
   </div>
 </div>

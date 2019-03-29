@@ -22,6 +22,8 @@ import { PostCommentComponent } from './components/post-comment/post-comment.com
 import { PostCommentCounterComponent } from './components/post-comment-counter/post-comment-counter.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { ErrorModule } from '../error/error.module';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { FormsModule } from '@angular/forms';
     DashboardHeaderComponent,
     DashboardAsideComponent,
     DashboardFooterComponent,
+    TimeAgoPipe,
     WallComponent,
     FriendsComponent,
     MyAccountComponent,
@@ -46,6 +49,7 @@ import { FormsModule } from '@angular/forms';
     DashboardRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    ErrorModule,
     NgxsModule.forFeature([PostState]),
     SharedModule
   ]
