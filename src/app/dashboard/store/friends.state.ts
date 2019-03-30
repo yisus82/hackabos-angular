@@ -40,6 +40,11 @@ export class FriendsState {
     return requests;
   }
 
+  @Selector()
+  static getSearchFriends({ friends, userSearch }: Friends) {
+    return [...userSearch, ...friends];
+  }
+
   @Action(GetFriends)
   getFriends({ dispatch }: StateContext<Friends>) {
     return this.friendService.getFriends().pipe(

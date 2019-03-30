@@ -1,0 +1,19 @@
+<a (click)="navigateToWall(friend.uuid)">
+  <div class="friend" [ngClass]="getSearchStatus()">
+    <sn-avatar [user]="friend" width="80px" height="80px"></sn-avatar>
+    <div class="friend-details">
+      <h5>{{ friend?.fullName }}</h5>
+      <div class="friend-toolbar">
+        <a *ngIf="getSearchStatus() === 'requested'">
+          <fa-icon [icon]="acceptIcon"></fa-icon> Accept request
+        </a>
+        <a *ngIf="getSearchStatus() === 'not-requested'">
+          <fa-icon [icon]="addIcon"></fa-icon> Add to my friends
+        </a>
+        <a *ngIf="getSearchStatus() === 'is-friend'">
+          <fa-icon [icon]="removeIcon"></fa-icon> Remove from my friends
+        </a>
+      </div>
+    </div>
+  </div>
+</a>

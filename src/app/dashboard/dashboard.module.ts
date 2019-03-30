@@ -28,6 +28,8 @@ import { FriendRequestsComponent } from './components/friend-requests/friend-req
 import { FriendsState } from './store/friends.state';
 import { PrivateWallComponent } from './components/private-wall/private-wall.component';
 import { AuthModule } from '../auth/auth.module';
+import { SearchUserComponent } from './components/search-user/search-user.component';
+import { FriendComponent } from './components/friend/friend.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { AuthModule } from '../auth/auth.module';
     PostCommentComponent,
     PostCommentCounterComponent,
     FriendRequestsComponent,
-    PrivateWallComponent
+    PrivateWallComponent,
+    SearchUserComponent,
+    FriendComponent
   ],
   imports: [
     CommonModule,
