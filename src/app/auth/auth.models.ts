@@ -44,3 +44,16 @@ export interface RegisterRequest {
   email: string;
   password: string;
 }
+
+export interface Profile {
+  fullName: string;
+  preferences: Preferences;
+}
+
+export interface Preferences {
+  isPublicProfile: boolean;
+  linkedIn?: string;
+  twitter?: string;
+  github?: string;
+  description?: string;
+}

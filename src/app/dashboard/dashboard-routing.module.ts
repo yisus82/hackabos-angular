@@ -5,6 +5,7 @@ import { WallComponent } from './containers/wall/wall.component';
 import { FriendsComponent } from './containers/friends/friends.component';
 import { MyAccountComponent } from './containers/my-account/my-account.component';
 import { AuthGuard } from '../auth/services/auth.guard';
+import { PrivateWallComponent } from './components/private-wall/private-wall.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,8 @@ const routes: Routes = [
       {
         path: 'my-account',
         component: MyAccountComponent
-      }
+      },
+      { path: 'user/:userId/private/wall', component: PrivateWallComponent }
     ]
   }
 ];

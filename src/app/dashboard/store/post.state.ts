@@ -20,6 +20,7 @@ import { flushModuleScopingQueueAsMuchAsPossible } from '@angular/core/src/rende
 import { applySourceSpanToStatementIfNeeded } from '@angular/compiler/src/output/output_ast';
 import { SetErrors } from 'src/app/error/store/error.actions';
 import { Logout } from 'src/app/auth/store/auth.actions';
+import { Navigate } from '@ngxs/router-plugin';
 
 @State<Post[]>({
   name: 'posts',
@@ -32,7 +33,7 @@ export class PostState {
   getPosts({ dispatch }: StateContext<Post[]>, { userId }: GetPosts) {
     return this.postService.getWall(userId).pipe(
       tap(posts => dispatch(new GetPostsSuccess(posts))),
-      catchError(error => dispatch(new GetPostsFailed(error.error)))
+      catchError(error => dispatch(new GetPostsFailed(error.error, userId)))
     );
   }
 
@@ -43,6 +44,15 @@ export class PostState {
         return p2.createdAt - p1.createdAt;
       })
     );
+  }
+
+  @Action([GetPostsFailed])
+  getPostsFailed({ dispatch }: StateContext<Post[]>, { errors, uuid }: any) {
+    if (errors && errors.filter(error => error.status === 403).length > 0) {
+      dispatch(new Navigate(['/user', uuid, 'private', 'wall']));
+    } else {
+      dispatch(new SetErrors(errors));
+    }
   }
 
   @Action(AddPost)
@@ -151,7 +161,7 @@ export class PostState {
     setState(null);
   }
 
-  @Action([GetPostsFailed, AddPostFailed, AddCommentFailed, LikeFailed])
+  @Action([AddPostFailed, AddCommentFailed, LikeFailed])
   error({ dispatch }: StateContext<Post[]>, { errors }: any) {
     dispatch(new SetErrors(errors));
   }

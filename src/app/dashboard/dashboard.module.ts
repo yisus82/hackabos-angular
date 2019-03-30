@@ -26,6 +26,8 @@ import { ErrorModule } from '../error/error.module';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { FriendRequestsComponent } from './components/friend-requests/friend-requests.component';
 import { FriendsState } from './store/friends.state';
+import { PrivateWallComponent } from './components/private-wall/private-wall.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { FriendsState } from './store/friends.state';
     LikeComponent,
     PostCommentComponent,
     PostCommentCounterComponent,
-    FriendRequestsComponent
+    FriendRequestsComponent,
+    PrivateWallComponent
   ],
   imports: [
     CommonModule,
@@ -53,6 +56,7 @@ import { FriendsState } from './store/friends.state';
     FontAwesomeModule,
     FormsModule,
     ErrorModule,
+    AuthModule,
     NgxsModule.forFeature([PostState, FriendsState]),
     SharedModule
   ]

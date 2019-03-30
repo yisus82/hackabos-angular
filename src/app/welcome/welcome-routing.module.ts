@@ -15,6 +15,10 @@ const routes: Routes = [
     children: [
       {
         path: 'welcome',
+        redirectTo: 'welcome/0'
+      },
+      {
+        path: 'welcome/:index',
         component: WelcomeComponent
       }
     ]

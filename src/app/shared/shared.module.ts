@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { TextareaDirective } from './directives/text-area.directive';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TextareaDirective } from './directives/text-area.directive';
     PageNotFoundComponent,
     AvatarComponent,
     CapitalizePipe,
-    TextareaDirective
+    TextareaDirective,
+    LoaderComponent
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
@@ -42,7 +44,8 @@ import { TextareaDirective } from './directives/text-area.directive';
     FormControlComponent,
     AvatarComponent,
     CapitalizePipe,
-    TextareaDirective
+    TextareaDirective,
+    LoaderComponent
   ]
 })
 export class SharedModule {}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sn-welcome-forms',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome-forms.component.scss']
 })
 export class WelcomeFormsComponent {
-  index = 0;
+  @Input() index: number;
   forms = [
     {
       id: 0,
@@ -22,7 +23,9 @@ export class WelcomeFormsComponent {
     }
   ];
 
+  constructor(private router: Router) {}
+
   toggleForm(index: number) {
-    this.index = index;
+    this.router.navigate(['/welcome', index]);
   }
 }

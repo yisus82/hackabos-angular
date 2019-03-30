@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { LoginRequest, LoginResponse, Auth } from '../auth.models';
 import { map } from 'rxjs/operators';
+import { Profile } from 'selenium-webdriver/firefox';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,20 @@ export class AuthService {
 
   getUserProfile() {
     return this.http.get<Auth>(`${environment.apiBaseUrl}/user`);
+  }
+
+  updateUserProfile(profile: Profile) {
+    return this.http.put<Profile>(`${environment.apiBaseUrl}/user`, profile);
+  }
+
+  uploadAvatar(image: File) {
+    const formData = new FormData();
+
+    formData.append('avatar', image);
+
+    return this.http.post(`${environment.apiBaseUrl}/user/avatar`, formData, {
+      observe: 'response'
+    });
   }
 
   logout() {

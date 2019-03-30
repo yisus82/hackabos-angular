@@ -15,24 +15,21 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
     >
       <ng-content></ng-content>
 
-      <ng-container
-        *ngIf="control.invalid && (control.dirty || control.touched)"
-      >
+      <ng-container *ngIf="control.invalid && (control.dirty || control.touched)">
         <p class="error-message" *ngIf="control.hasError('required')">
           <fa-icon [icon]="errorIcon"> </fa-icon> This field is mandatory
         </p>
         <p class="error-message" *ngIf="control.hasError('malformedMail')">
           <fa-icon [icon]="errorIcon"> </fa-icon> This email is invalid
         </p>
+        <p class="error-message" *ngIf="control.hasError('malformedUrl')">
+          <fa-icon [icon]="errorIcon"> </fa-icon> This is not a valid URL
+        </p>
       </ng-container>
 
       <ng-container *ngIf="group?.invalid && (group?.dirty || group?.touched)">
-        <p
-          class="error-message"
-          *ngIf="control.valid && group.hasError('passwordMismatch')"
-        >
-          <fa-icon [icon]="errorIcon"> </fa-icon> Password and confirmation
-          should match
+        <p class="error-message" *ngIf="control.valid && group.hasError('passwordMismatch')">
+          <fa-icon [icon]="errorIcon"> </fa-icon> Password and confirmation should match
         </p>
       </ng-container>
     </div>
