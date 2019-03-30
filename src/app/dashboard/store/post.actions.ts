@@ -4,6 +4,7 @@ import { PostRequest } from '../dashboard.models';
 
 export class GetPosts {
   static readonly type = '[Dashboard] GetPosts';
+  constructor(public userId?: string) {}
 }
 
 export class GetPostsSuccess {

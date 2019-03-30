@@ -7,7 +7,7 @@ import { ErrorState } from '../../store/error.state';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'sn-error',
+  selector: 'sn-errors',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss']
 })

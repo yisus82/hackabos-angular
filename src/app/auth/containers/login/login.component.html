@@ -1,5 +1,5 @@
 <sn-form>
-  <sn-error></sn-error>
+  <sn-errors></sn-errors>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
     <sn-form-control [control]="loginForm.get('email')">
       <input type="text" placeholder="Email" formControlName="email" />
