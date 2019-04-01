@@ -14,7 +14,10 @@ import {
   AcceptFriendRequestsSuccess,
   AddFriend,
   AddFriendSuccess,
-  AcceptFriendRequests
+  AcceptFriendRequests,
+  SearchUsersFailed,
+  SearchUsers,
+  SearchUsersSuccess
 } from './friends.actions';
 import { catchError, tap } from 'rxjs/operators';
 import { SetErrors } from 'src/app/error/store/error.actions';
@@ -43,6 +46,21 @@ export class FriendsState {
   @Selector()
   static getSearchFriends({ friends, userSearch }: Friends) {
     return [...userSearch, ...friends];
+  }
+
+  @Action(SearchUsers)
+  searchUsers({ dispatch }: StateContext<Friends>, { searchTerm }: SearchUsers) {
+    return this.authService.search(searchTerm).pipe(
+      tap(users => dispatch(new SearchUsersSuccess(users))),
+      catchError(error => dispatch(new SearchUsersFailed(error.error)))
+    );
+  }
+
+  @Action(SearchUsersSuccess)
+  searchUsersSuccess({ patchState }: StateContext<Friends>, { users }: SearchUsersSuccess) {
+    patchState({
+      userSearch: users
+    });
   }
 
   @Action(GetFriends)
@@ -116,6 +134,9 @@ export class FriendsState {
     );
   }
 
+  @Action(AddFriendSuccess)
+  addFriendSuccess({ dispatch }: StateContext<Friends>) {}
+
   @Action(Logout)
   logout({ setState }: StateContext<Friends>) {
     setState({
@@ -125,10 +146,7 @@ export class FriendsState {
     });
   }
 
-  @Action(AddFriendSuccess)
-  addFriendSuccess({ dispatch }: StateContext<Friends>) {}
-
-  @Action([GetFriendRequestFailed, AddFriendFailed, AcceptFriendRequestFailed])
+  @Action([GetFriendRequestFailed, AddFriendFailed, AcceptFriendRequestFailed, SearchUsersFailed])
   error({ dispatch }: StateContext<Friends>, { errors }: any) {
     // Use ngxs Action or this is going to fail because running outside NgZone
     dispatch(new SetErrors(errors));

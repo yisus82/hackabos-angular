@@ -16,6 +16,12 @@
   &.is-friend {
     background-color: $dark;
   }
+  &.requested {
+    background-color: $contrast;
+  }
+  &.not-requested {
+    background-color: $main;
+  }
   .friend-details {
     margin-left: 10px;
     flex: 1;

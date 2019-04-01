@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequest, LoginResponse, Auth } from '../auth.models';
+import { LoginRequest, LoginResponse, Auth, Profile } from '../auth.models';
 import { map } from 'rxjs/operators';
-import { Profile } from 'selenium-webdriver/firefox';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +50,12 @@ export class AuthService {
 
     return this.http.post(`${environment.apiBaseUrl}/user/avatar`, formData, {
       observe: 'response'
+    });
+  }
+
+  search(text: string) {
+    return this.http.get<Profile[]>(`${environment.apiBaseUrl}/user/search`, {
+      params: { q: text }
     });
   }
 

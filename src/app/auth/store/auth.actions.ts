@@ -1,6 +1,5 @@
-import { LoginRequest, LoginResponse, RegisterRequest, Auth } from '../auth.models';
+import { LoginRequest, LoginResponse, RegisterRequest, Auth, Profile } from '../auth.models';
 import { Error } from 'src/app/error/error.models';
-import { Profile } from 'selenium-webdriver/firefox';
 
 export class Login {
   static readonly type = '[Auth] Login';

@@ -9,6 +9,11 @@
     display: flex;
     height: 30px;
     border-bottom: 1px solid $main;
+    fa-icon {
+      font-size: 1.2rem;
+      color: $main;
+      margin-right: 1rem;
+    }
     input {
       outline: none;
       flex: 1;
@@ -18,10 +23,6 @@
       &::placeholder {
         color: $main;
       }
-    }
-    fa-icon {
-      font-size: 1.2rem;
-      color: $main;
     }
   }
 }
